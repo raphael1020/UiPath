@@ -1,0 +1,659 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Goibibo_com" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ucat="clr-namespace:UiPath.Core.Activities.TextModifications;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_Place" Type="InArgument(x:String)" />
+    <x:Property Name="in_Check_in" Type="InArgument(x:String)" />
+    <x:Property Name="in_Check_out" Type="InArgument(x:String)" />
+    <x:Property Name="dt_goibibo_output" Type="OutArgument(sd:DataTable)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1102,9577</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>Goibibo_com_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="80">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>UiPath.Core.Activities.DateModifications</x:String>
+      <x:String>UiPath.Activities.System.Workflow.Business</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>UiPath.Core.Activities.TextModifications</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="106">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Goibibo_com" sap:VirtualizedContainerService.HintSize="1112,9512" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+      <Variable x:TypeArguments="x:String" Name="dt_extract" />
+      <Variable x:TypeArguments="x:Int32" Default="0" Name="Count" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <uix:NApplicationCard AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: Goibibo - Best Travel Website. Book Hotels, Flights, Trains, Bus and Cabs with u" sap:VirtualizedContainerService.HintSize="1050,9122" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1016,8905" sap2010:WorkflowViewState.IdRef="Sequence_5">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="s:DateTime" Name="Date_in" />
+              <Variable x:TypeArguments="s:DateTime" Name="Date_out" />
+              <Variable x:TypeArguments="x:String" Name="date_in_output" />
+              <Variable x:TypeArguments="x:String" Name="date_out_output" />
+              <Variable x:TypeArguments="x:Boolean" Name="IsTrue" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NCheckState DisplayName="Check App State 'Login/SignupEnter your'" sap:VirtualizedContainerService.HintSize="954,489" sap2010:WorkflowViewState.IdRef="NCheckState_2" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NCheckState.IfExists>
+                <Sequence DisplayName="Target appears" sap:VirtualizedContainerService.HintSize="450,272" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <uix:NClick ClickType="Single" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="388,157" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+                    <uix:NClick.Target>
+                      <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/" DesignTimeRectangle="1017, 240, 24, 24" DesignTimeScaleFactor="1" FriendlyName="'SPAN'" FullSelectorArgument="&lt;webctrl class='lgRightSection__close' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl class='lgRightSection__close' tag='SPAN' type='' aaname='' /&gt;" Guid="33ef4bad-ed99-44ea-8521-dc90628c0e96" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEYSURBVEhL7dXBCwFBFMdxf6yT/4DLHnAnQnF1UJviQuHmoDjIRRIn/gDJ4vTsT7NLO2bmjTYHfMvBq+3TM4MEfbg/GHs/DB6OHg3GC/LOVzHhNZmvabXdiXdyShBYMl2lfKVNp/NFTPV1h7P7M9mSKyZyShCbAeOiAZZy6rTc7MVUTnuGQDhodxRgDS2GjJcmRDO1l6gNhowgUm36+Bh5GGKBKIq6vYk1htggekbfwZAViNy+v5l/nng5hZZ0pqaswOcL4hRbyoukiw1GL0j0TLkoC1TdxhC12NQImr5ntptqwQem/7k6eRfKMTdVgvjV120WLUT9Z0rNvpjKKUH8xWTLLgsLAgqsM5yKiRzr0sTZH4y9bweJblnCwefAdvH5AAAAAElFTkSuQmCC" InformativeScreenshot="944f6e5e0ee02321d02d365802d13196.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Goibibo - Best Travel Website. Book Hotels, Flights, Trains, Bus and Cabs with upto 50% off' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+                    </uix:NClick.Target>
+                  </uix:NClick>
+                </Sequence>
+              </uix:NCheckState.IfExists>
+              <uix:NCheckState.IfNotExists>
+                <Sequence DisplayName="Target does not appear" sap:VirtualizedContainerService.HintSize="450,105" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </uix:NCheckState.IfNotExists>
+              <uix:NCheckState.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/" DesignTimeRectangle="663, 218, 400, 456" DesignTimeScaleFactor="1" FriendlyName="'Login/SignupEnter your'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' parentid='root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='lgRightSection ' parentid='root' tag='DIV' aaname='' check:innerText='Login/Signup&amp;#xD;&amp;#xA;Enter your Mobile Number&amp;#xD;&amp;#xA;+91 -&amp;#xD;&amp;#xA;&amp;#xD;&amp;#xA;By proceeding, you agree to GoIbibo’s Privacy Policy,' /&gt;" Guid="ee562d1b-a64a-4997-ad33-62f503423cde" ImageBase64="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g9kIZRWBQlEU1euqi0agZCOU1QQKRVFUz6suykBZl41Q1hAoFEVRPa+6aAoURigURVG9r7ooA2X9akYoFEVRB6LqohEovOVFURR1QKoumkYoawkUiqKonlddECgURVEHuOqiDJQhBcqtBAo1cUp//vv5558Pe/fuDa+99lrYs2dPePbZZ8PWrVuT7auou+++O/znf/5nXrqdakNRnVZdLOlfmheBQk2o2r59ex4i8rOf/Sy/rZ+qxx9/PLlMp3XXXXeFV155JS/d1jT93aVdu3blwcXfi6OqqrooA2XDmm1hHYFCTYB64IEH8lGJwkMd++23355P18jkvvvuC7fddlt5/6mnngovv/xy/ifCFUI2T/XYY4+FJ554Ih/pvPDCC3k7tdf6fvrTn+a3tR3VM888E+6///5yOZVuP/zww2HHjh35Op577rl8HWqr5TVfo5idO3eWy6p0W8v4kdSjjz6a7+NLL72Uz7NjoiZH1UX5lheBQk2UUoct6oB9QPhSB6+3pWLqsNWR21tXNqrxtH516vF0LXvPPfeUb3nptgJE7Wy0ZBRQ2g+FieitOds33dYyCjjdf/rpp/fZlta7P9+6o8ZX1UUZKBuzQFk/SKBQ478UJOqAn3zyyeR8lTp00ahBr/YVMLt3786XU1hYMOi+AkTBpNGK7qud7mv0YeHxyCOP5B18HChqKwoJbUfLaERj8zXKsfm2bz5Q1F5hpADRqEbrsPkKGn9MVH2rLggUasKVRgrWIafmx52+TdfbVOq8/UhD9x988MF8vn7qvi2XWk88zULK9sXm23pHChSFhrz66qt5qKh0zUZ025ah6l11UQbKprXbwhCBQk2A0qhDdHE8Nd+usahj9hfOLTAUAnHH7+dbWMThoTbxtLEGim6L2sfV6vio+lVdECjUhCsbaSg09FZUPF+fyNIrfrXx8200oE487vg1f38EiqZrvl1TUWmEpPk6Dr39ZvvU6noQVf+qizJQNmeBsmE1gUKN/1LHa6/s1VlrJKK3h6wj1yemNDLQPIWORjTq0O2+rlvEHb/WGweKXbjXNC2vazadBoqNlnRf+6xSe1tepfATHYOu52idal/Vx5+p8V910RwojFCoCVIKFb26V2ftKVzUiWu+QkUds9EXHxU2trxGCurM7SO++mnXMuytMvsElkrri7+borDSerXNeL0KC01T2Pj9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" InformativeScreenshot="4b622827149e78081257bcfcd1a8ac39.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Goibibo - Best Travel Website. Book Hotels, Flights, Trains, Bus and Cabs with upto 50% off' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V1" Visibility="Interactive" />
+              </uix:NCheckState.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NCheckState>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Hotels'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_2" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/" DesignTimeRectangle="325, 138, 98, 37" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Hotels'" FullSelectorArgument="&lt;webctrl aaname='Hotels' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Hotels' tag='A' type='' class='nav-link .' check:innerText='Hotels' /&gt;" Guid="e891f1fe-733c-4568-8452-0ef8f3c9e5c7" ImageBase64="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" InformativeScreenshot="ad214f7b513924d3990eaad9f53ea398.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Goibibo - Best Travel Website. Book Hotels, Flights, Trains, Bus and Cabs with upto 50% off' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'Where'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="954,218" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Text="[in_Place]" Version="V3">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/" DesignTimeRectangle="130, 349, 466, 25" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'INPUT downshift-1-input'" FullSelectorArgument="&lt;webctrl aria-labelledby='downshift-1-label' tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl aria-labelledby='downshift-1-label' tag='INPUT' type='' class='HomePageAutosuggeststyles__SearchInputStyles-sc-1v6s32j-1 euhecC' aaname='' /&gt;" Guid="d034f82a-b49a-43cb-a98c-92d596488e2f" ImageBase64="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" InformativeScreenshot="8aa102c3024baaf938cbde3521ec97e1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Hotel Booking | Book Cheap, Budget and Luxury Hotels -Goibibo' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="108, 320, 47, 17" ElementType="Text" FriendlyName="'Where'" FullSelectorArgument="&lt;webctrl aaname='Where' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Where' tag='SPAN' type='' class='SearchBlockUIstyles__AutoSuggestLabelText-sc-fity7j-10 bKYeCc' check:innerText='Where' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADMAAAAVCAYAAADrVNYBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGWSURBVFhH7ZQ9joMwEEb31pR00FFS0nEDSko6Sm7ADdLRefUsfWgYm4Ru2YgnWQTP7zc2+QlfxCPmrnyfmHVdQ1mWYVmWuCm2bQtt20YbPpbX6xXqug7jOMY4frP3l0QxtjGLRBZFkdgQIJG3EgN938dT4DQETbI3DENiQ5wE3E5MriEEsrxN1w8byD5NUzxFLfYtxOMn+9nwuq5L7NRSXO7awy7GfzdqmHc1IZt/55krbgegGA0AvI/yWB8481N9sYtR8/o2EFdVVXy+swFJ/bT4bYdjr6WQQOW9kkcg0A4PdjGAg6ZCAets372NQr5R24SG4ScOtmYuT24IkPM9iLEOFNDEgOZ0GrYBuCpGd96vT2JyMay3YtSwkvIUBLE3z3NszNpyTVw9GUsuz9nJ5DiIUVH+TZqmSRLQDDb7vcAnMUAsuXU1QfV0A3J52COPrQfE+HwHMaBj9Y5wZrsiBhs+9nT81HN5gBi773OLRAwONKxpWZTEX5crYkCCzu78mRigpuJYXggkYv4zj5i78oi5JyH8AhoUmw4vRN7uAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey 'Down Arrow'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="SendHotkey_1" Key="down" KeyModifiers="None" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5891b7bd-03f6-430f-b698-00b0faf382dc" InformativeScreenshot="035864bd035f41feecf57bb06295c277" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div' isleaf='1' parentid='root' tag='DIV' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" Activate="True" DisplayName="Send Hotkey 'Enter'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="SendHotkey_2" Key="enter" KeyModifiers="None" SpecialKey="True">
+              <ui:SendHotkey.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5891b7bd-03f6-430f-b698-00b0faf382dc" InformativeScreenshot="035864bd035f41feecf57bb06295c277" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div' isleaf='1' parentid='root' tag='DIV' /&gt;">
+                  <ui:Target.TimeoutMS>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </ui:Target.TimeoutMS>
+                  <ui:Target.WaitForReady>
+                    <InArgument x:TypeArguments="ui:WaitForReady" />
+                  </ui:Target.WaitForReady>
+                </ui:Target>
+              </ui:SendHotkey.Target>
+            </ui:SendHotkey>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Date'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_3" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/" DesignTimeRectangle="108, 347, 206, 25" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Mar 24, 2023'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;h4' tag='H4' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H4' class='dwebCommonstyles__SmallSectionHeader-sc-112ty3f-10 SearchBlockUIstyles__CheckInDateWrapDiv-sc-fity7j-15 kJLbNT gbNkLl' aaname='Mar 24, 2023' check:innerText='Mar 24, 2023' /&gt;" Guid="f6434829-121e-4d9b-b7f6-3ede036ba944" ImageBase64="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" InformativeScreenshot="34387ec618ee8410367907dcd2ba1421.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Hotel Booking | Book Cheap, Budget and Luxury Hotels -Goibibo' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <Assign sap:VirtualizedContainerService.HintSize="954,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:DateTime">[Date_in]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact( in_Check_in.Trim,"dd/MM/yyyy",system.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <ui:ModifyDate OutDate="{x:Null}" CustomDateFormat="dd" DisplayName="Modify Date" FormatAsText="True" sap:VirtualizedContainerService.HintSize="954,248" sap2010:WorkflowViewState.IdRef="ModifyDate_1" OutText="[date_in_output]" SourceDate="[Date_in]" UseCustomDateFormat="True">
+              <ui:ModifyDate.Body>
+                <ActivityAction>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ModifyDate.Body>
+            </ui:ModifyDate>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Check_In Date'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/" DesignTimeRectangle="333, 541, 45, 45" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'25'" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' tag='SPAN' /&gt;&quot;, date_in_output)]" FuzzySelectorArgument="&lt;webctrl class='partial' tag='SPAN' type='' aaname='25' check:innerText='25' /&gt;" Guid="9f1ba5a1-56d1-4fa0-9f23-a187144eec8e" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADEAAAAxCAYAAABznEEcAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIfSURBVGhD7ZqxS+NQHMffX5E6CRYcFDw4aIeCUzd7U7vZ6QIOikILd4NQQYdAB4uL0uHgssXh6A2FdjGkIGLAwBUs9KAgJQFBwSHDDRm/l/aqNjF3kOTJPct78Bne+/0I75P3fvktIZiBMRsSyc8mRtz/wpuFS7ACl2AFLsEKXIIVuAQrcAlW4BKswCXG2HdoyTWI+SxW89vYl3X0bH+eA6OjodF+yYXpzw1PPAlTQzm9gA/Sd6h9G70fGo42MxDWFRjTebdtiIkctqQa9j2cQLl2vM+MQAyJO3xdz6B85t/EEPU8gfjNfl67rGFlo42BJ48esU7Cug1+i8aXAsie/jS3mp+wUu16cmjyKoWtVt9j9Xj4NDeOs+OTscyfaI1q4XII60XdRIe+xIOO3Xc5HF0/rjlolAiExAIW17ZRlioQ15YgJAuonk9duRhQlnDQ2ssgddCFNbU+uNKg3kznufQVFNxif5aNDlUJQy5CSEtQH4LjfnpyAYIrHBQLAzWJQbOCVLqCRpjvfkcCySvoBcVCQEXCcjeTShRR7wfH/8pZBaSkea5eFOJLjO92BrudsE1rVPBzKJ7GL+54EhOBcvNfG3GglNxuLXcxmNSKZXZR38li3t/ZIxJDwobycQ6EkGCSNaiPuaaO6kYOi4k/MWE5B/FQp9bBqRX2/4RLsAKXYAUuwQpcghW4BCtwCVbgEqwwGxKTH1Xe9JgBCeA3hmsvZgxL4lgAAAAASUVORK5CYII=" InformativeScreenshot="d161d253ba4821cad3c6c9e9579cdd99.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Hotel Booking | Book Cheap, Budget and Luxury Hotels -Goibibo' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <If Condition="[in_Check_out = &quot;&quot;]" sap:VirtualizedContainerService.HintSize="954,522" sap2010:WorkflowViewState.IdRef="If_2">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_5">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:DateTime">[Date_out]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[Date_in.AddDays(2)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="476,170" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:DateTime">[Date_out]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact( in_Check_out.Trim,"dd/MM/yyyy",system.Globalization.CultureInfo.InvariantCulture)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </If.Else>
+            </If>
+            <ui:ModifyDate OutDate="{x:Null}" CustomDateFormat="dd" DisplayName="Modify Date" FormatAsText="True" sap:VirtualizedContainerService.HintSize="954,248" sap2010:WorkflowViewState.IdRef="ModifyDate_2" OutText="[date_out_output]" SourceDate="[Date_out]" UseCustomDateFormat="True">
+              <ui:ModifyDate.Body>
+                <ActivityAction>
+                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ModifyDate.Body>
+            </ui:ModifyDate>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Check_Out Date'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/" DesignTimeRectangle="108, 552, 45, 24" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'20'" FullSelectorArgument="[string.Format(&quot;&lt;webctrl aaname='{0}' tag='SPAN' /&gt;&quot;, date_out_output)]" FuzzyMatches="10000" FuzzySelectorArgument="&lt;webctrl aaname='20' tag='SPAN' type='' class='' check:innerText='20' /&gt;" Guid="691498bc-fa47-475f-bbfd-0d98655e6d48" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAADEAAAAcCAYAAADIrlf0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIUSURBVFhH7ZZNq3FRFMd9Id/BwNAA5S0SBpKXgSElZeQrKEMyMjBDFGVCJiYoJVFISMhLXv5Pa9vupesZ3HPcp3Ofzq+UvfY+2j/7rLW2Av8BsoRUkCWkgiwhFURLzOdzJBIJaLVaOBwOFItFHA4HPvvJ5XJBpVJha2gtPbNarfisOERJNJtNqNVqJJNJjEYj1Ot1WCwWxONxnE4nvgrsO8U0Gg1yuRxKpRIikQh0Oh2m0ylfJRzBErPZDE6nE+12m0duTCYTtjkSvENyBoPhacN3MZI5n888KgzBEvR6rNdrXK9XHrlB42g0ilQqxca0QdpoNptl40f6/T4THgwGPCKMtyf28XhEMBhkuUEsl0tYrVZ0Oh02fmS/38Pr9aJarfKIMN4u0e12YTQaMR6P2bjX67E8oQLwilgs9nFqQnmrxHa7hc/nQyaT4ZGblNls/h0S90T1+/3Y7XY8+oskSIDKrNvtxmKx4NEbVMVsNtvL5KWkD4VCrOyKQbQEVaN0Ov3Xmk+n4vF4UKvVeOQTSnoSbLVaPCIMURIkUC6XoVKpvvSLR6i8hsPhpwZIFAoFuFwulktiECVB1wgSeGxsr6B/3GQysVeOriQk32g02LP0G2IRLEH3Hr1eD4VC8fITCASe7lDD4RB2u/1jXqlUIp/Pf2mWQnhLYn+HzWbDToY6/rv45xI/gSwhFWQJqSBLSAPgD17UxH+sPfaUAAAAAElFTkSuQmCC" InformativeScreenshot="d723699aefa283b6a5e4d3c2891f959a.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Hotel Booking | Book Cheap, Budget and Luxury Hotels -Goibibo' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Search'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/" DesignTimeRectangle="243, 385, 270, 60" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Search'" FullSelectorArgument="&lt;webctrl tag='BUTTON' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='BUTTON' type='' class='dwebCommonstyles__ButtonBase-sc-112ty3f-13 SearchBlockUIstyles__SearchButtonAutoSuggest-sc-fity7j-14 kwEZmw kWwdSv' aaname='Search' check:innerText='SEARCH' /&gt;" Guid="6c29e8eb-1534-4dff-8119-7f30c8089519" ImageBase64="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" InformativeScreenshot="64f1ee50498eb848743c65df978fd4e6.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Online Hotel Booking | Book Cheap, Budget and Luxury Hotels -Goibibo' /&gt;" SearchSteps="Selector, FuzzySelector, Image" Version="V1" Visibility="Interactive" />
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ClickType="Single" DisplayName="Click 'Customer Ratings'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/find-hotels-in-Mumbai%20Region,%20India/2982212166277694831/2982212166277694831/%7B%22ci%22:%2220230319%22,%22co%22:%2220230320%22,%22r%22:%221-1-0%22%7D/?{%22filter%22:{%22star%22:[],%22step_range%22:[{%22min%22:0,%22max%22:2000}],%22tag%22:%22goStays%22,%22range_ugc%22:[3.5,5]}}&amp;sec=dom&amp;cc=IN&amp;type=region" DesignTimeRectangle="124, 497, 40, 20" DesignTimeScaleFactor="1" FriendlyName="'3.5+'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;span&amp;gt;div' idx='3' parentid='root' tag='DIV' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='Filtersstyles__AverageReviewWrapper-sc-bkjigy-11 hVhHkh' parentid='root' tag='DIV' aaname='' check:innerText='3.5+' /&gt;" Guid="bc07a11b-cc17-425e-a69f-98b76699f02d" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACwAAAAYCAYAAACBbx+6AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEHSURBVFhH7Zc9DoMwDIV7qR6h5+ACPQy3YKuEegK6IjEywsTACBIDk5ukMQ2Jw09VGlLxpCdF8hs+bBPBCTyTv8CP4g7X2wWC6LwrcybOhhqA9wiL5myoAZgK7smofwOOoZJ1rq4OiYyZ46oKKve5UZPAScMrJSTsHNUtO7eQZ2YuyFLoWPXbkKpRi1diErgo7TVhOYE+hYiszxu1CFjtNFV/PYyiJtYyPwYWFl2kxh5C3rMCwsic2He5KqbsD28zajkwdsnonm4q56LDslv2mwLtDHg86vFLp9bolXByrek7+IbQILXc/BTWG7Vih90adQBvZdQBvJVRA7B3H/De/SL5Is+AAZ5+GHtIe6FD4QAAAABJRU5ErkJggg==" InformativeScreenshot="6ae94ab2dd8f6f0447e7547c2dfc71b0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Results' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="118, 398, 121, 14" ElementType="Text" FriendlyName="'Customer Ratings'" FullSelectorArgument="&lt;webctrl idx='3' tag='H5' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H5' class='CheckBoxListstyles__StyledH5-sc-mib0do-6 hfGalb' aaname='Customer Ratings' check:innerText='Customer Ratings' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAH0AAAASCAYAAAB2ItGqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKVSURBVGhD7ZZbasMwEEW7iH70vxsLhGwln15ICF5ICFlGoN2Ealma55ViOY/SYl8Ygh+SZu4ZyXkLqxanFfoCtUJfoFboCxRA/+q34f3jU8U+nPKz5+k7HHfbcLzmy7+q6yFsjBcqdofwlV9r0yV0ystTl+bpzvnGL8pAp0QwngkoAn/2nC/SLegxukt+cUoReBzzig00XwL9vM/F6MQIkBRIJ8Gm/x6v5R09joqkIMBqvhw8jzfYGKoapac8aaye05pqTy3bZFxHt8/rFpqQcoJdjRDhhOQx3ou0u/1O5+te++CaRHs0+ENrymlR892KoVePm7iQKnoaOoJNEZ9XoNd2FK9bm3M75Obuuea00QJJqRU6bxgbyaN50CG4+XGezfCJjL9pjlu+W2XoHlxd7dBrc9Fz6UIqGOfEgugdNomAkPHjdSGH/JzGM/QSbFKtGXNIvk6UCwCTfKrQaYypp5SvNIH1aJqhg14+DrSmoU/tIr8WGjLKQML8IA+zK3FXcLiToAouqgq94pN//w7odM1jsnf4XGqge7d9F7Ud7wWgYlYF2iDu3jHIKA8Qm2bUq6BnI2ZBJ/MUVDPO7+wHdvoj0Ell30Xtf+ScWVBgATrJGowAKUkxUtZNBc2FTu+35lSRhx7F9WL+ZD549AToPCfnIo3toZNqNQp0DRhCdQsX7YMKkmRs0BxunWiM2kEmuMC50JVJLjyY2dAH8U7K9/naB0BPEdecC73kq/0jN+W7SEFPQrNwt+giN/2lsKswAdONunHIGA+eDYuaDz3K16IBPwJd15fG63pjjnjS6Fzugz5IeRTnoDlhjArjexZAX/VHVfiMYqO0aYX+X+RPQg48iae0Qv9Pgv9T+L1u0Qp9cQrhByA0xHSdSupWAAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <uix:NClick ClickType="Single" DisplayName="Click '₹2001 - ₹4000'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/find-hotels-in-Mumbai%20Region,%20India/2982212166277694831/2982212166277694831/%7B%22ci%22:%2220230319%22,%22co%22:%2220230320%22,%22r%22:%221-1-0%22%7D/?{%22filter%22:{%22star%22:[4,5],%22step_range%22:[{%22min%22:0,%22max%22:2000}]}}&amp;sec=dom&amp;cc=IN&amp;type=region" DesignTimeRectangle="124, 679, 180, 16" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'₹2001 - ₹4000'" FullSelectorArgument="&lt;webctrl aaname='₹2001 - ₹4000' parentid='root' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='₹2001 - ₹4000' parentid='root' tag='SPAN' type='' class='CheckBoxListstyles__CheckBoxListText-sc-mib0do-9 dOjhCj' check:innerText='₹2001 - ₹4000' /&gt;" Guid="1a0bf0b0-d1ca-4434-99f9-9b4ee0bde84f" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAALgAAAAUCAYAAAA+7fdSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH9SURBVGhD7ZdtagIxEIZ7iP7o/15MEK/izz2IiAcR8RiCXiLdmUmyM/kiWAtr+j6wUDe7ySt5Zkw/HAADA8HB0EBwMDQQHAxNFPy4+3afX/aaLn7wsi/fJ24Htwlj09XfFO6nbfmdAL+7d2f/sZ9HO6/iPM1jJtfVTeGd3cHd/V2ilZfn4bGtO978TbB68g7O0ulNJCGUhCx7+CyyiAwi3eb04BHzXDbnTCyMZwRXlOYOhMKMgtuMRv5GXhY/FIP5/mDt9HVwg5KaRVg2W4vAf1fEEklmgS72/X56OrgU5mQ6ON1TxaBkbeWlQojZTVGDtdPRwRP0OAmif+aVMFaK0lFhJimQp6jkDeubddP11Lv1vCL7InRSrGDVFDt4vTvZzTU/3UQUPJfgtYLL/NW8NK/PZdZVBchEwVt5044Nwd+JpYPz5jc6d5BKS/qXHZznEoGNlIFqXsq53DfrputFwVt55XtD8PfEHFG4IxeFky6WbWoiTPcZPNASvINiXp4zFIa6OAvO4P+N7AzOnctI0+pYerOT55Q8ulMafik4kee1LJ2YyMWNY428unDNc2D15P9kzog0foMrHTF2MD0eRRKkwybPa14gOGHyJljBCSlKzqWPVzOtvLIGXeV1wDopCg7AKEBwMDQQHAwNBAdDA8HB0EBwMDQQHAyMcz+G/0HutrxdHgAAAABJRU5ErkJggg==" InformativeScreenshot="86916c48463ee7f02a26d533b5153eb1.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Results' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="118, 619, 81, 14" ElementType="Text" FriendlyName="'Price Range'" FullSelectorArgument="&lt;webctrl idx='2' tag='H5' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H5' class='CheckBoxListstyles__StyledH5-sc-mib0do-6 hfGalb' aaname='Price Range' check:innerText='Price Range' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAFUAAAASCAYAAAAqqJKOAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHLSURBVFhH7ZVRasMwDIZ3iD3sfRcLlFwljzlIKD1IKT1Gob2EF8eSLMlW7I0YCvMPeqgry9In2flwXYerQ22gDrWBOtQGIqjPy8l9fn1nbHJX8LF0nYPvfIOFI/VY3JDkBDYu7glu76QKqN7KYJtpD6q3+Q6O76ME6nB5wYrXy51Hn/zJnR/rTyxwnNy8rQf/3KTKJsF+0t3N9N9qe2DoTD2VGCM2PBkMtifWt7Czd/Lye28T7GFMVJMlr6C/QSUL6xpqUhzzTYCC5ZLbVAsVAFhx8zmtRnGx1mjDqJgk9QfTz17d9ceDKajssISKxUYf0bCk+1iM8cQYhaCZzUDIcAuovqQW3RTMI0LWjYkQoVbV8DJUvsGYGgHV8EHZzZONIplQK/0VVKuZ6f+r1ABgnanJgShcf6WmUNNrtEnHY9ByAOh9Nia1DVTZ4OOhsjeTIPECVaJF5c7EeKwYmQNrXiXUGPM31z+vBlBZQcIQQP5DZU126UxcN6eoFiqDiFb7oaLbAWoC1UuDld3VYOWbJGScyWOEnHlM38DS9dZQvVgM61ZpsJlhIKj/XgQrPilVg5ZRh0oyniX1EapRh8qVeTNLH6WcOtTD5dwPXqI4ynjz2fEAAAAASUVORK5CYII=" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="954,90" sap2010:WorkflowViewState.IdRef="Delay_5" />
+            <uix:NClick ClickType="Single" DisplayName="Click 'Sort By'" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://www.goibibo.com/hotels/find-hotels-in-Shimla/1449073512565742573/1449073512565742573/%7B%22ci%22:%2220230319%22,%22co%22:%2220230320%22,%22r%22:%221-2-0%22%7D/?{%22filter%22:{%22star%22:[4,5],%22step_range%22:[{%22min%22:0,%22max%22:2000}]}}&amp;sec=dom&amp;cc=IN" DesignTimeRectangle="261, 235, 149, 36" DesignTimeScaleFactor="1" ElementType="ListItem" FriendlyName="'Price (Low to High)'" FullSelectorArgument="&lt;webctrl idx='2' parentid='navigation_header' tag='LI' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='navigation_header' tag='LI' class='SortingNewUIstyles__SortingFilterItem-sc-15ya9lx-0 jJiXVA' aaname='' check:innerText='Price (Low to High)' /&gt;" Guid="33c2b52c-f489-4b0d-abc8-973899e21911" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAJkAAAAoCAYAAADtylhqAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAVuSURBVHhe7ZtNi1xFFIb9L+Je1+pa9AfEtf4As1OQEFdmFxciWRlwk110JYgEV3EZQRSzEFwEmTBJSJghOiGasczTzNucOX2qbtWdbmV6zgNF962ve+qct+vWvXX7hZIkGyZFlmyc2SL77f7f5YvvH5fz1x6Wtz7ZLa98tFNe+uD38uL7mU57Io7Ek7gSX+JMvOcyLLLrt/4ob1+5X179+G758Pqj8tUPf5bbO3+VvYPDcvjPUaXkVEMciSdxJb7EmXgTd+I/SrfIvv35YKHsdz5/UG78cnCUm5wliDvxRwfooZcukV348lF54/JuiitZgA7QA7rooSmye/vPFlMk02VeChMLekAX6AOdtKiKjIZMi599t3+UkySroA900hJaVWQoNAWW9IBO0EuNUGRca5kKk6QX9FJbo62IjLsGFnW5BktGQC/oJrrrXBEZ19e8i0zmgG7Qj+eYyHjQxnOQJJkL+vEPbI+JjMVbzmLJSUA//iZgKTL2ptg6SJKTgo7sXudSZGyCzrmj/PTGfrjJeu7KvfL4yeFRrVXeu/ZwkTbB7t6z8ubztcGPd54e+/5fgl/mjq9lM/3Kt9R7/dLd8s1P01cf+nrted2aH+iXtA7QEXoSS5Gx285m6Cg1Z5I3JbRNwbnl+G0W2QhTIqO/d68+WIuf0BF6EkuRcVfArvsoNWdiLI7CYdRB3fzqmOUQAG1sO75rFqQe7QTtVfbyxZ2mIyjDWQpCj8iwJ+rfB5R8Hyjs9jOJtVftSXxXfuQz0Ssy6tmZjPrYT//k43PVle34xtsm6MfnzQEd2bvMpch4f4jXO0Zh0JHDGJQVmRcHbdTOB9Me+zIc4UVooU/aiCmR0Z+1zR7bMQD9EhwFlXxsi2yhrsaH7dSrHXtaNlt/UE8i03eNnbaMQ3V1rHP6+tA67wjoCD2Jpch4UW3OA1jrTOGdaB0jKCNZR3lqg6addY7QeW1fLcepvu9Ltvn+lE8C8vXdY/1CPf/DwJ7a5Us+0Yzjk3xpfUeKfKy86Hx2LFDzxyjoCD2JtYis5QjViRxAajmbPH59Uf+RIyJBtURmg2SxAuGTY+oyBurqckyZbytsH9H4p+yqldm+rP32fMLWpa8pkUGUN0pVZOu+XFoiJ2sw0eBFqywiqj8VzCmRUYbtN399shAXbfjkmDocR9g+ovFP2fV/iSzqZ5Tq5XLdC3+LHazQAK2jPK2yiCg4rYBhD3Zhn0W2Ae2pwyJa9Si79PVe85GP9Qv2Mw76ElHQRctm60vqyT+kyMfKi85nxymivFGqC/91P8KwWMcIOxhfboNCmQ2QdayH9vRjy1oBA+rWFv6gPrlEq19ssscR1i/qo3bsadlsfWV9oe+UA239wn9KZLJLfcyl+gjjJA9ja84S1jHCD5DvWm/ZIIMtmwouda2T5HzbnuSFFeUL+rNCjwLmoYy+1E4B1Hns2D3UHxUZ6Jz0Tz7x1HkimymzdrTOOwLnDR/Gbsu2Eg7CURLEWaZnArAg1pH6NarbSrAtG+Q4qjXbbSOM1862fpabgpmRG5qTzmLNDXLYlld91jXtnzb4celyTBr5oTHr2WXGXCZf9QHuCvJ1n2QO6MbeVYoVkeXr18kc0Ev369eQfyRJRkEv3X8kESze8i9xSQ+z/hIH+efepAf0gU5m/bkXaIhCmQpzjZZY0AO6QB8tgUFTZIJrLYu6vOtMAB2gh9oazNMlMuCugWmR5yAptrMJcSf+6CC6i6zRLTLBgzamSLYOmC7ZDGXXndc78pK6HRBH4klciS9xJt7E3T9o7WFYZIK9KTZB2W1H2bw/xItq9olzptOZiCPxJK7ElzjbvchRZossSXpJkSUbppR/AbJtWSi7vOh2AAAAAElFTkSuQmCC" InformativeScreenshot="1a5d999978a551b26aef85d060c0c11c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Results' /&gt;" SearchSteps="FuzzySelector, Image" Version="V1" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="83, 243, 72, 21" ElementType="Text" FriendlyName="'Sort By'" FullSelectorArgument="&lt;webctrl parentid='navigation_header' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='navigation_header' tag='SPAN' type='' class='SortingNewUIstyles__FontBoldSpan-sc-15ya9lx-3 isoYtn' aaname='Sort By:' check:innerText='Sort By:' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEwAAAAZCAYAAACb1MhvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI4SURBVFhH7Zi7SgNBGIV9CAt7H8TC1law9B3EzkKsREQERRHBFxDB11BsFMFCLRTjFeMFNV6CI0dy5Oyf2YmT3QiGOfBDMtfzf//MskmPS4pSAhapBCxSCVikErAIPb28JWAxqtw8NgO7rd654ZFR19vX/x0Dg0Pu8Oi40VuesObk1LSr1WqNlqysDxvow5i/0vtH3Z1c3meB5ZksG9rW9s73umPjE20DQ/wltMfnV3d88ZwFtr6xmTGCZJAU2mbnFhqjiisWGMarUDwU0dfXKV1Vn9zBuXmGEZgmkpecwmSoeU0YsDlmemb+5zMD+1qFgOnemOvzDREsD0BozVY6u35w+5V6FhjhMPIW1Y1tMHnfGJhfXFrNtCFigREEHxUcy+8UQfJ2FAF2ennn9iqfzQ99PQ0Mex05BpvDBETYNgm02cpzrG1X6fy80KTpifB5Ci3EdnVyUXW7lZz3MFZQzTG5vCrRIE2HqlkWMPRjHGTXZA6hPWIUBKbSEwdTTMRXOa1ymcDsfC0OT7/1ZU9cUTVdSTWhm2i7ArOJ2PmdBAb51iCk5ZW1DLwy5H3oc0NsBsMQjanx0Dia/A0wnW8Vmq/FUWBcl8HTV4a8rxW897opQ42FxvF0/gYYw5eYzg+Frq0gbR8U8tRK3hdXyGfUl5A1h1ATrczxlCLaBeZbFwVDH+ZiDVURYN6fRt0gFsJXhKLy/vj+j7KnvcyHvaqr/t7RKx573WLUdVey00rAIpWARSoBi5JzX8JcvemA1Rb+AAAAAElFTkSuQmCC" SearchSteps="Selector, FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+            </uix:NClick>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="954,90" sap2010:WorkflowViewState.IdRef="Delay_6" />
+            <ui:UiElementExists DisplayName="Element Exists 'SECTION'" Exists="[IsTrue]" sap:VirtualizedContainerService.HintSize="954,107" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
+              <ui:UiElementExists.Target>
+                <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d15c9884-2bbf-44c1-a449-a394432604a9" InformativeScreenshot="b8b80af773d704f5a91f51f768bacd35" Selector="&lt;webctrl parentid='root' tag='SPAN' idx='68' /&gt;" TimeoutMS="5000" WaitForReady="COMPLETE" />
+              </ui:UiElementExists.Target>
+            </ui:UiElementExists>
+            <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="954,90" sap2010:WorkflowViewState.IdRef="Delay_4" />
+            <If Condition="[IsTrue]" sap:VirtualizedContainerService.HintSize="954,440" sap2010:WorkflowViewState.IdRef="If_3">
+              <If.Then>
+                <Sequence sap:VirtualizedContainerService.HintSize="300,80" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence sap:VirtualizedContainerService.HintSize="376,178" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Delay Duration="00:00:05" sap:VirtualizedContainerService.HintSize="334,90" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                </Sequence>
+              </If.Else>
+            </If>
+            <uix:NExtractData AppendResults="False" ContinueOnError="False" DataTable="[ExtractDataTable]" DisplayName="Extract Table Data" ExtractDataSettings="&lt;Table xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' Type='Structured'&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Hotel_Name' ReferenceName='Column0'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Address' ReferenceName='Column1'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Rating' ReferenceName='Column2'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&#x9;&lt;Column xsi:type='DataColumn' Name='Price' ReferenceName='Column3'&gt;&#xA;&#x9;&#x9;&lt;IsExtra&gt;false&lt;/IsExtra&gt;&#xA;&#x9;&#x9;&lt;CanExtractSimilar&gt;false&lt;/CanExtractSimilar&gt;&#xA;&#x9;&#x9;&lt;Format xsi:type='TextColumnFormat' /&gt;&#xA;&#x9;&lt;/Column&gt;&#xA;&lt;/Table&gt;" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='section' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;/row&gt;&lt;column exact='1' name='Column0' attr='text'&gt;&lt;webctrl tag='section' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='h4' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column1' attr='text'&gt;&lt;webctrl tag='section' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='3' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='span' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column2' attr='text'&gt;&lt;webctrl tag='section' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;/column&gt;&lt;column exact='1' name='Column3' attr='text'&gt;&lt;webctrl tag='section' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='2' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='section' idx='1' /&gt;&lt;webctrl tag='div' idx='1' /&gt;&lt;webctrl tag='p' idx='1' /&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="954,157" sap2010:WorkflowViewState.IdRef="NExtractData_1" LimitExtractionTo="None" MaximumResults="5" ScopeIdentifier="bf800b9f-eceb-4e4e-b406-10a91d0db613" Version="V3">
+              <uix:NExtractData.Target>
+                <uix:TargetAnchorable DesignTimeRectangle="83, 175, 1200, 5386" DesignTimeScaleFactor="1" FriendlyName="'FILTERSCLEARUpto ₹2000P…'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div' parentid='root' tag='DIV' /&gt;" Guid="9c1dc398-9d06-4e7e-a3d0-3afb3ca6fa22" InformativeScreenshot="88039c9a9f6d7df7c810153e9d68ff7e.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='Results' /&gt;" SearchSteps="Selector" Version="V1" Visibility="Interactive" />
+              </uix:NExtractData.Target>
+            </uix:NExtractData>
+            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="954,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Data extracted from Goibibo website successfully&quot;]" />
+            <ui:BuildDataTable DataTable="[dt_goibibo_output]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="954,60" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Travel_x0020_Agency&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Amenties&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Rating&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Price&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Address&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="954,3327" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+              <ui:ForEachRow.Body>
+                <ActivityAction x:TypeArguments="sd:DataRow">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="572,3210" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="Name" />
+                      <Variable x:TypeArguments="x:String" Name="a1" />
+                      <Variable x:TypeArguments="x:String" Name="a2" />
+                      <Variable x:TypeArguments="x:String" Name="a3" />
+                      <Variable x:TypeArguments="x:String" Name="a4" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign sap:VirtualizedContainerService.HintSize="510,82" sap2010:WorkflowViewState.IdRef="Assign_4">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[Count]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[Count+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <If Condition="[Count&gt;5]" sap:VirtualizedContainerService.HintSize="510,2973" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence sap:VirtualizedContainerService.HintSize="376,245" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:Break sap:VirtualizedContainerService.HintSize="334,25" sap2010:WorkflowViewState.IdRef="Break_1" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Break Executed in Goibibo Website&quot;]" />
+                        </Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence sap:VirtualizedContainerService.HintSize="476,2546" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:String" Name="Travel_Agency" />
+                            <Variable x:TypeArguments="x:String" Name="Hotel_Name" />
+                            <Variable x:TypeArguments="x:String" Name="Amenties" />
+                            <Variable x:TypeArguments="x:String" Name="Address" />
+                            <Variable x:TypeArguments="x:String" Name="Rating" />
+                            <Variable x:TypeArguments="x:String" Name="Price" />
+                            <Variable x:TypeArguments="x:String" Name="dt_go_out" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[Name]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[CurrentRow(0).ToString]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:ModifyText DisplayName="Modify Text" sap:VirtualizedContainerService.HintSize="434,343" sap2010:WorkflowViewState.IdRef="ModifyText_1" OutputText="[Name]" SourceText="[Name]">
+                            <ui:ModifyText.Body>
+                              <ActivityAction>
+                                <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <ucat:FindAndReplaceTextModification DisplayName="Find and replace text" sap:VirtualizedContainerService.HintSize="334,149" sap2010:WorkflowViewState.IdRef="FindAndReplaceTextModification_1" MatchCase="True" ReplaceText="*" SearchText="'s" />
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ModifyText.Body>
+                          </ui:ModifyText>
+                          <ui:Click AlterIfDisabled="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DelayBefore="2000" DelayMS="1000" DisplayName="Click 'Hotel Name'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="755d1cd6-acb8-447c-988b-9d1144cc7e1a" InformativeScreenshot="57b153486241528d5e1851941548e401" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='Results' /&gt;&lt;webctrl tag='*' innertext='{0}' visibleinnertext='{0}' /&gt;&quot;, Name)]">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                          <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'Amenities'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SimulateClick="True">
+                            <ui:Click.CursorPosition>
+                              <ui:CursorPosition Position="Center">
+                                <ui:CursorPosition.OffsetX>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetX>
+                                <ui:CursorPosition.OffsetY>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:CursorPosition.OffsetY>
+                              </ui:CursorPosition>
+                            </ui:Click.CursorPosition>
+                            <ui:Click.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2867ae84-a5ff-4bf1-a750-dd79e27a6fa4" InformativeScreenshot="a9b5cdb6eb0f7566cd3d84f9bc9b30c1" Selector="&lt;html app='chrome.exe' title='*- Reviews, Photos &amp;amp; Offer' /&gt;&lt;webctrl aaname='Amenities' parentid='details-navigation' tag='A' href='#amenities' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:Click.Target>
+                          </ui:Click>
+                          <Delay Duration="00:00:02" sap:VirtualizedContainerService.HintSize="434,90" sap2010:WorkflowViewState.IdRef="Delay_2" />
+                          <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'SPAN'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="GetValue_1">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d6299fc2-5a37-451d-97b1-63be28f9ef2b" InformativeScreenshot="e01397a9a0d42e65cec3f0a3e74ff978" Selector="&lt;html app='chrome.exe' title='*- Reviews, Photos &amp;amp; Offer' /&gt;&lt;webctrl aaname='*' parentid='amenities' tag='SPAN' isleaf='1' idx='1' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[a1]</OutArgument>
+                            </ui:GetValue.Value>
+                          </ui:GetValue>
+                          <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'SPAN'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d6299fc2-5a37-451d-97b1-63be28f9ef2b" InformativeScreenshot="e01397a9a0d42e65cec3f0a3e74ff978" Selector="&lt;html app='chrome.exe' title='*- Reviews, Photos &amp;amp; Offer' /&gt;&lt;webctrl aaname='*' parentid='amenities' tag='SPAN' isleaf='1' idx='2' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[a2]</OutArgument>
+                            </ui:GetValue.Value>
+                          </ui:GetValue>
+                          <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'SPAN'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="GetValue_3">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d6299fc2-5a37-451d-97b1-63be28f9ef2b" InformativeScreenshot="e01397a9a0d42e65cec3f0a3e74ff978" Selector="&lt;html app='chrome.exe' title='*- Reviews, Photos &amp;amp; Offer' /&gt;&lt;webctrl aaname='*' parentid='amenities' tag='SPAN' isleaf='1' idx='3' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[a3]</OutArgument>
+                            </ui:GetValue.Value>
+                          </ui:GetValue>
+                          <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'SPAN'" sap:VirtualizedContainerService.HintSize="434,107" sap2010:WorkflowViewState.IdRef="GetValue_4">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d6299fc2-5a37-451d-97b1-63be28f9ef2b" InformativeScreenshot="e01397a9a0d42e65cec3f0a3e74ff978" Selector="&lt;html app='chrome.exe' title='*- Reviews, Photos &amp;amp; Offer' /&gt;&lt;webctrl aaname='*' parentid='amenities' tag='SPAN' isleaf='1' idx='4' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[a4]</OutArgument>
+                            </ui:GetValue.Value>
+                          </ui:GetValue>
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="434,256" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                            <ui:MultipleAssign.AssignOperations>
+                              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[Travel_Agency]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">["Goibibo.com"]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[Hotel_Name]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[Name]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[Amenties]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[a1+","+a2+","+a3+","+a4]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[Address]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[CurrentRow(1).ToString]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[Rating]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[CurrentRow(2).ToString]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                                  <ui:AssignOperation.To>
+                                    <OutArgument x:TypeArguments="x:String">[Price]</OutArgument>
+                                  </ui:AssignOperation.To>
+                                  <ui:AssignOperation.Value>
+                                    <InArgument x:TypeArguments="x:String">[CurrentRow(3).ToString]</InArgument>
+                                  </ui:AssignOperation.Value>
+                                </ui:AssignOperation>
+                              </scg:List>
+                            </ui:MultipleAssign.AssignOperations>
+                          </ui:MultipleAssign>
+                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{Travel_Agency,Hotel_Name,Amenties,Rating,Price,Address}]" DataTable="[dt_goibibo_output]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="434,186" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,92" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Values added to Datatable&quot;]" />
+                          <ui:SendHotkey ClickBeforeTyping="{x:Null}" DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" EmptyField="{x:Null}" SendWindowMessages="{x:Null}" SpecialKey="{x:Null}" Activate="True" DisplayName="Send Hotkey 'page tab'" sap:VirtualizedContainerService.HintSize="434,157" sap2010:WorkflowViewState.IdRef="SendHotkey_3" Key="w" KeyModifiers="Ctrl">
+                            <ui:SendHotkey.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="baf3d142-f4d6-4958-bc31-4d5e14143442" InformativeScreenshot="37488e4c24de7f9cfc21741d2000616a" Selector="&lt;wnd app='chrome.exe' cls='Chrome_WidgetWin_1' title='* Reviews, Photo*' /&gt;&lt;ctrl name='* - Reviews, Photo*' role='pane' /&gt;&lt;ctrl name='* - Reviews, Photo*' role='page tab' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:SendHotkey.Target>
+                          </ui:SendHotkey>
+                          <Delay Duration="00:00:01" sap:VirtualizedContainerService.HintSize="434,90" sap2010:WorkflowViewState.IdRef="Delay_3" />
+                        </Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </ActivityAction>
+              </ui:ForEachRow.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ForEachRow>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="0, 0, 0, 0" BrowserType="Chrome" IconBase64="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" InformativeScreenshot="6e1f5250d097f6eaec03834ff0a2d492.jpg" Selector="&lt;html app='chrome.exe' title='Goibibo - Best Travel Website. Book Hotels, Flights, Trains, Bus and Cabs with upto 50% off' /&gt;" Url="https://www.goibibo.com/" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+    <ui:CloseWindow TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Close Window 'chrome.exe  Results'" sap:VirtualizedContainerService.HintSize="1050,107" sap2010:WorkflowViewState.IdRef="CloseWindow_1" InformativeScreenshot="4be3639d5d359cfbbe5a44377c14474e" Selector="&lt;html app='chrome.exe' title='Results' /&gt;" WaitForReady="INTERACTIVE" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="1050,92" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Goibibo Website closed successfully&quot;]" />
+  </Sequence>
+</Activity>
